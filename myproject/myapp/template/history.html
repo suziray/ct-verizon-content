@@ -16,11 +16,13 @@
             margin-left: 20px;
         }
         nav {
-            background: #34B86D; /* For browsers that do not support gradients */
-            background: -webkit-linear-gradient(#34B86D, #59BDBC); /* For Safari 5.1 to 6.0 */
-            background: -o-linear-gradient(#34B86D, #59BDBC); /* For Opera 11.1 to 12.0 */
-            background: -moz-linear-gradient(#34B86D, #59BDBC); /* For Firefox 3.6 to 15 */
-            background: linear-gradient(#34B86D, #59BDBC); /* Standard syntax */
+            background: #150D33; /* For browsers that do not support gradients */
+            /*background: -webkit-linear-gradient(#34B86D, #59BDBC); !* For Safari 5.1 to 6.0 *!*/
+            /*background: -o-linear-gradient(#34B86D, #59BDBC); !* For Opera 11.1 to 12.0 *!*/
+            /*background: -moz-linear-gradient(#34B86D, #59BDBC); !* For Firefox 3.6 to 15 *!*/
+            /*background: linear-gradient(#34B86D, #59BDBC); !* Standard syntax *!*/
+            padding-bottom:2px;
+            padding-top:2px
         }
 
         * {
@@ -56,7 +58,7 @@
 
 </head>
 
-<body>
+<body style="background-color: #150D33">
 
      <nav class="navbar navbar-fixed-top">
       <div class="container">
@@ -68,7 +70,7 @@
             <span class="icon-bar"></span>
           </button>
     
-          <a class="navbar-brand" onclick="location.href='{% url 'logged' %}'" href="#" style="color: white">Verse</a>
+          <a class="navbar-brand" onclick="location.href='{% url 'logged' %}'" href="#" style="color: white; margin-left: -63px">Verse</a>
        
           
         </div>
@@ -80,11 +82,17 @@
           <form class="navbar-form navbar-right">
             {% if not is_logged_in %}
            <!--  <button id="signup" name = "signup" type="button" class="btn btn-success" onclick="location.href='{% url 'hello' %}'" >Sign up</button> -->
-            <button id = "signin"name = "signin" type="button" class="btn btn-success" onclick="location.href='{% url 'hello' %}'" style="background-color: Transparent; border-color: white;">Sign in</button>
+            <div style="margin-right: -50px">
+              <button id = "signin"name = "signin" type="button" class="btn btn-success" onclick="location.href='{% url 'hello' %}'" style="background-color: Transparent; border-color: white;">Sign in</button>
+            </div>
             {% endif %}
             {% if is_logged_in %}
-            <span style="color:white; margin-right: 10px">Welcome, {{ name }}!</span>
-            <button name = "signout" type="button" class="btn btn-success" onclick="location.href='{% url 'hello' %}'" style="background-color: Transparent; border-color: white;">Sign out</button>
+              <div style="margin-right: -50px">
+                <span style="color:white; margin-right: 20px">Welcome, {{ name }}!</span>
+                <button name = "signout" type="button" class="btn btn-success" onclick="location.href='{% url 'hello' %}'" style="background-color: Transparent; border-color: white;">Sign out</button>
+                <button class="btn btn-success" style="background-color: Transparent; border-color: Transparent; margin-left: 10px">About</button>
+                <button class="btn btn-success" style="background-color: Transparent; border-color: Transparent;">Help</button>
+              </div>
             {% endif %}
           </form>
         </div><!--/.navbar-collapse -->
@@ -92,22 +100,15 @@
     </nav>
 
     <!-- Page Content -->
-    <div class="container" style="padding-top: 50px;">
-
-        <div class="row">
-
-            <img id="image" class="center fit" src="https://image.ibb.co/b0FxLb/analysis_previous_activities.png">
-           
-
-        <hr>
-
-        <!-- Footer -->
-        <footer>
-            <p>&copy; 2017 Verse, Inc.</p>
-        </footer>
-
+     <div class="jumbotron text-center" style="padding-top: 0px; padding-bottom: 220px; height: 1300px; background-color: #352C56">
+        <div class="container" style="padding-top: 0px">
+            <img style="margin-top: 60px" id="image" class="center fit" src="https://image.ibb.co/fw9XQ6/history.png">
         </div>
-    </div>
+     </div>
+
+     <footer style="height:10px">
+        <p style="color: white; margin-top: -15px" align="left">&copy; 2017 Verse, Inc.</p>
+      </footer>
     <!-- /.container -->
 
     <!-- jQuery -->

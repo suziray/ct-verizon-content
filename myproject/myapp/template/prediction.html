@@ -8,6 +8,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
+    <link rel="stylesheet" href="https://opensource.keycdn.com/fontawesome/4.7.0/font-awesome.min.css" />
+    <link href="bootstrap.css" rel="stylesheet">
+    <link href="bootstrap-switch.css" rel="stylesheet">
+    <script src="jquery.js"></script>
+    <script src="bootstrap-switch.js"></script>
+
 
     <title>Verse</title>
 
@@ -16,11 +22,13 @@
             margin-left: 20px;
         }
         nav {
-            background: #34B86D; /* For browsers that do not support gradients */
-            background: -webkit-linear-gradient(#34B86D, #59BDBC); /* For Safari 5.1 to 6.0 */
-            background: -o-linear-gradient(#34B86D, #59BDBC); /* For Opera 11.1 to 12.0 */
-            background: -moz-linear-gradient(#34B86D, #59BDBC); /* For Firefox 3.6 to 15 */
-            background: linear-gradient(#34B86D, #59BDBC); /* Standard syntax */
+            background: #150D33; /* For browsers that do not support gradients */
+            /*background: -webkit-linear-gradient(#34B86D, #59BDBC); !* For Safari 5.1 to 6.0 *!*/
+            /*background: -o-linear-gradient(#34B86D, #59BDBC); !* For Opera 11.1 to 12.0 *!*/
+            /*background: -moz-linear-gradient(#34B86D, #59BDBC); !* For Firefox 3.6 to 15 *!*/
+            /*background: linear-gradient(#34B86D, #59BDBC); !* Standard syntax *!*/
+            padding-bottom:2px;
+            padding-top:2px
         }
         
         * {
@@ -36,6 +44,24 @@
         .center {
             display: block;
             margin: auto;
+        }
+
+        .nav-tabs { border-bottom: 10px solid #150D33; }
+            .nav-tabs > li.active > a, .nav-tabs > li.active > a:focus, .nav-tabs > li.active > a:hover { border-width: 0; }
+            .nav-tabs > li > a { border: none; color: white;background: #5a4080; }
+                .nav-tabs > li.active > a, .nav-tabs > li > a:hover { border: none;  color: #5a4080 !important; background: transparent; }
+                .nav-tabs > li > a::after { content: ""; background: #5a4080; height: 2px; position: absolute; width: 100%; left: 0px; bottom: -1px; transition: all 250ms ease 0s; transform: scale(0); }
+            .nav-tabs > li.active > a::after, .nav-tabs > li:hover > a::after { transform: scale(1); }
+        .tab-nav > li > a::after { background: #5a4080 none repeat scroll 0% 0%; color: #fff; }
+        .tab-pane { padding: 15px 0; height: 300px; }
+        .tab-content{padding:20px; background-color: #352C56}
+        .nav-tabs > li  {width:33.33%; text-align:center;}
+        .card {background: #150D33 none repeat scroll 0% 0%; box-shadow: 5px 5px 5px black; margin-bottom: 30px; width: 700px}
+
+
+        @media all and (max-width:724px){
+        .nav-tabs > li > a > span {display:none;}
+        .nav-tabs > li > a {padding: 5px 5px;}
         }
 
     </style>
@@ -56,7 +82,7 @@
 
 </head>
 
-<body>
+<body style="background-color: #150D33">
 
      <nav class="navbar navbar-fixed-top">
       <div class="container">
@@ -67,8 +93,8 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-    
-          <a class="navbar-brand" onclick="location.href='{% url 'logged' %}'" href="#" style="color: white">Verse</a>
+
+              <a class="navbar-brand" onclick="location.href='{% url 'logged' %}'" href="#" style="color: white; margin-left: -70px">Verse</a>
        
           
         </div>
@@ -83,8 +109,12 @@
             <button id = "signin"name = "signin" type="button" class="btn btn-success" onclick="location.href='{% url 'hello' %}'" style="background-color: Transparent; border-color: white;">Sign in</button>
             {% endif %}
             {% if is_logged_in %}
-            <span style="color:white; margin-right: 10px">Welcome, {{ name }}!</span>
-            <button name = "signout" type="button" class="btn btn-success" onclick="location.href='{% url 'hello' %}'" style="background-color: Transparent; border-color: white;">Sign out</button>
+            <div style="margin-right: -50px">
+                <span style="color:white; margin-right: 20px">Welcome, {{ name }}!</span>
+                <button name = "signout" type="button" class="btn btn-success" onclick="location.href='{% url 'hello' %}'" style="background-color: Transparent; border-color: white;">Sign out</button>
+                <button class="btn btn-success" style="background-color: Transparent; border-color: Transparent; margin-left: 10px">About</button>
+                <button class="btn btn-success" style="background-color: Transparent; border-color: Transparent;">Help</button>
+              </div>
             {% endif %}
           </form>
         </div><!--/.navbar-collapse -->
@@ -92,23 +122,118 @@
     </nav>
 
     <!-- Page Content -->
-    <div class="container" style="padding-top: 50px;">
+    <div class="jumbotron text-center" style="padding-bottom: 220px; height: 840px; background-color: #352C56">
+        <div class="container" style="padding-top: 20px;">
 
-        <div class="row">
 
-            <img id="image" class="center fit" src="https://image.ibb.co/mnfHmG/analysis_new_video_1.png">
-           
+            <div class="container1" style="padding-top: 0px">
+                <img style="margin-left: -105px; height: 200px" id="image" class="center fit" src="https://image.ibb.co/jPqg2m/header.png">
+            </div>
+            <br>
 
-        <hr>
+            <div class="container" style="float: right;">
+              <div class="row">
+                <div class="col-md-12">
+                  <!-- Nav tabs -->
+                  <div class="card" style="width: 300px;">
+                    <ul class="nav nav-tabs" role="tablist">
+                      <li role="presentation" class="active" style="width:100%"><a href="#home" aria-controls="home" role="tab" data-toggle="tab"><i class="fa fa-users"></i>  <span>Target Users</span></a></li>
+                    </ul>
 
-        <!-- Footer -->
-        <footer>
-            <p>&copy; 2017 Verse, Inc.</p>
-        </footer>
+                    <!-- Tab panes -->
+                    <div class="tab-content">
+                      <div role="tabpanel" class="tab-pane active" id="home1" style="height: 400px; padding-left: 10px;">
+                          <h1 style="font-size: 20px; color: white" align="left">User group 1</h1>
+                          <p style="color: white; font-size: 15px; padding-left: 10px" align="left">
+                            Age: 15 - 20<br>
+                            Device: mobile<br>
+                            Location: US Mid-East<br>
+                            Gender: Male
+                          </p>
+                          <br>
+                          <h1 style="font-size: 20px; color: white" align="left">User group 2</h1>
+                          <p style="color: white; font-size: 15px; padding-left: 10px" align="left">
+                            Age: 25 - 30<br>
+                            Device: laptop<br>
+                            Location: China North<br>
+                            Gender: Female
+                          </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="container" style="position: absolute; margin-top: 0px; margin-left: 400px; width: auto">
+              <div class="row">
+                <div class="col-md-12">
+                  <!-- Nav tabs -->
+                  <div class="card">
+                    <ul class="nav nav-tabs" role="tablist">
+                      <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab"><i class="fa fa-hand-paper-o"></i>  <span>Behavior</span></a></li>
+                      <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab"><i class="fa fa-file-video-o"></i>  <span>Content</span></a></li>
+                      <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab"><i class="fa fa-fighter-jet"></i>  <span>Strategy</span></a></li>
+                    </ul>
+
+                    <!-- Tab panes -->
+                    <div class="tab-content">
+                      <div role="tabpanel" class="tab-pane active" id="home" style="height: 400px">
+                          <div align="left" style="margin-top: -20px; margin-left: 50px; position: relative">
+                            <button id="ub1" style="background-color: transparent; border-color: white; color: white; position: inherit" class="btn btn-primary">User group 1</button><br>
+                            <button id="ub2" style="background-color: transparent; border-color: white; color: white; position: inherit; margin-top: 5px" class="btn btn-primary">User group 2</button><br>
+                          </div>
+                          <img id="user1" src="https://image.ibb.co/ednfCm/user1.png" style="width: 600px; margin-top: -60px; display: block; margin-left: 20px">
+                          <img id="user2" src="https://image.ibb.co/bMfp56/user2.png" style="width: 600px; margin-top: -60px; display: none; margin-left: 20px">
+                      </div>
+                      <div role="tabpanel" class="tab-pane" id="profile" style="height: 400px; padding-left: 20px">
+                          <h1 style="font-size: 25px; color: white; margin-top: 0px" align="left">Why would people watch this:</h1>
+                          <p style="color: white; font-size: 20px; padding-left: 10px" align="left">
+                            #Bitcoin: 40%<br>
+                            #FinTech: 30%<br>
+                            #Mining: 5%<br>
+                            #Technology: 15%<br>
+                            #Cartoon: 10%
+                          </p>
+                          <h1 style="font-size: 25px; color: white; margin-top: 20px" align="left">They are also watching:</h1>
+                          <p style="color: white; font-size: 20px; padding-left: 10px" align="left">
+                            #Fraud: 15 million<br>
+                            #Internet: 12 million<br>
+                            #Tutorial: 30 million<br>
+                            #Art: 3 million<br>
+                            #Blockchain: 50 million<br>
+                          </p>
+                      </div>
+                      <div role="tabpanel" class="tab-pane" id="messages" style="height: 400px; padding-left: 20px">
+                          <h1 style="font-size: 25px; color: white; margin-top: 0px" align="left">Expected 1-month viewership: 900,000</h1>
+                          <br>
+                          <br>
+                          <h1 style="font-size: 25px; color: white; margin-top: -20px" align="left">Suggestions and Predictions</h1>
+                          <p style="color: white; font-size: 20px; padding-left: 10px" align="left">
+                            Post when "bitcoin" appears on TechCrunch<br>
+                              &nbsp;&nbsp;&nbsp;&nbsp; + 50% viewership<br>
+                            Pivot to a tutorial<br>
+                              &nbsp;&nbsp;&nbsp;&nbsp; + 20% viewership<br>
+                            Trigger a celebrity share on Instagram<br>
+                              &nbsp;&nbsp;&nbsp;&nbsp; + 60% viewership<br>
+                            Include content about Blockchain<br>
+                              &nbsp;&nbsp;&nbsp;&nbsp; + 35% viewership
+                          </p>
+
+                          <button style="background-color: transparent; border-color: white; color: white; position: inherit; margin-top: 5px" class="btn btn-primary btn-lg">Help me to grow!</button><br>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
 
         </div>
     </div>
-    <!-- /.container -->
+
+     <footer style="height:10px">
+        <p style="color: white; margin-top: -10px" align="left">&copy; 2017 Verse, Inc.</p>
+      </footer>
 
     <!-- jQuery -->
     <script src="js/jquery.js"></script>
@@ -121,6 +246,16 @@
             $(window).bind('resize', set_body_height);
             set_body_height();
          });
+         var u1 = document.getElementById('ub1');
+         u1.onclick = function() {
+            document.getElementById("user1").style.display = "block";
+            document.getElementById("user2").style.display = "none";
+         }
+         var u2 = document.getElementById('ub2');
+         u2.onclick = function() {
+            document.getElementById("user2").style.display = "block";
+            document.getElementById("user1").style.display = "none"
+         }
      </script>
 
     <!-- Bootstrap Core JavaScript -->
